@@ -1,0 +1,45 @@
+<!doctype html>
+<title>Image transformation interface</title>
+<h2>Select an image to upload and transform</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+
+{% if filenames %}
+<table>
+	<tr><th>Original</th></tr>
+	<tr><th><img src="{{ url_for('display_image', filename=filenames[0]) }}"></th></tr>
+	<tr><th>Grayscale</th></tr>
+	<tr><th><img src="{{ url_for('display_image', filename=filenames[1]) }}"></th></tr>
+	<tr><th>Monochrome</th></tr>
+	<tr><th><img src="{{ url_for('display_image', filename=filenames[2]) }}"></th></tr>
+	<tr><th>Sharp</th></tr>
+	<tr><th><img src="{{ url_for('display_image', filename=filenames[3]) }}"></th></tr>
+	<tr><th>Contrast</th></tr>
+	<tr><th><img src="{{ url_for('display_image', filename=filenames[4]) }}"></th></tr>
+	<tr><th>White balance</th></tr>
+	<tr><th><img src="{{ url_for('display_image', filename=filenames[5]) }}"></th></tr>
+	<tr><th>Inversion</th></tr>
+	<tr><th><img src="{{ url_for('display_image', filename=filenames[6]) }}"></th></tr>
+
+</table>
+{% endif %}
